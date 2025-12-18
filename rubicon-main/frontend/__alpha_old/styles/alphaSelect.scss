@@ -1,0 +1,59 @@
+
+@import '~@/components/alpha/styles/alphaTextStyles.scss';
+@import '~@/alphaColors.scss';
+
+// $select-font: (
+//   "select-input": $body3,
+//   "select-list": $body2,
+//   "select-list-bold": $bold-body2
+// ) !default;
+
+$select-height: 32px !default;
+$select-padding: 0px 10px !default;
+$select-margin: 0px 0px 0px 0px !default;
+$select-radius: 4px !default;
+
+$select-text-color: (
+  "default": (
+    "default": $text-guide,
+    "title": $text-dark,
+    "activation": $text-dark,
+    "done": $text-dark,
+    "disabled": $line
+  ),
+  "white": (
+    "default": $text-guide,
+    "title": $text-dark,
+    "activation": $text-dark,
+    "done": $text-dark,
+    "disabled": $line
+  ),
+  "title": $text-guide
+) !default;
+
+$select-bg-color: (
+  "default": $shade,
+  "white": $white
+) !default;
+
+$outline-color: (
+  "gray": $gray,
+  "white": $white
+) !default;
+
+$btn-border: (
+  "default": (
+    "default": 1px solid $input,
+    "title": 1px solid $input,
+    "activation": 1px solid $btn-activation,
+    "done": 1px solid $input,
+    "disabled": 1px solid $input
+  ),
+  "white": (
+    "default": 1px solid $line,
+    "title": 1px solid $line,
+    "activation": 1px solid $btn-activation,
+    "done": 1px solid $line,
+    "disabled": 1px solid $line
+  )
+) !default;

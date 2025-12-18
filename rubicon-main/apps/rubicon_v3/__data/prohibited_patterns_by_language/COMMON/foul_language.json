@@ -1,0 +1,362 @@
+[
+    {
+        "pattern": "\\b[a@][s\\$][s\\$]\\b",
+        "name": "ass",
+        "description": "Detects the word 'ass' with common character substitutions"
+    },
+    {
+        "pattern": "\\b[a@][s\\$][s\\$]h[o0][l1][e3][s\\$]?\\b",
+        "name": "asshole",
+        "description": "Detects 'asshole' and 'assholes' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[a@][s\\$][t\\+][a@]rd\\b",
+        "name": "bastard",
+        "description": "Detects 'bastard' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[e3][a@][s\\$][t\\+][i1][a@]?[l1]([i1][t\\+]y)?\\b",
+        "name": "beastial",
+        "description": "Detects 'beastial' and 'beastiality' variations"
+    },
+    {
+        "pattern": "\\bb[e3][a@][s\\$][t\\+][i1][l1][i1][t\\+]y\\b",
+        "name": "beastiality",
+        "description": "Detects 'beastiality' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[e3][s\\$][t\\+][i1][a@][l1]([i1][t\\+]y)?\\b",
+        "name": "bestial",
+        "description": "Detects 'bestial' and 'bestiality' variations"
+    },
+    {
+        "pattern": "\\bb[i1][t\\+]ch[s\\$]?\\b",
+        "name": "bitch",
+        "description": "Detects 'bitch' and plural form with character substitutions"
+    },
+    {
+        "pattern": "\\bb[i1][t\\+]ch[e3]r[s\\$]?\\b",
+        "name": "bitcher",
+        "description": "Detects 'bitcher' and 'bitchers' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[i1][t\\+]ch[e3][s\\$]\\b",
+        "name": "bitches",
+        "description": "Detects 'bitches' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[i1][t\\+]ch[i1]ng?\\b",
+        "name": "bitching",
+        "description": "Detects 'bitchin' and 'bitching' with character substitutions"
+    },
+    {
+        "pattern": "\\bb[l1][o0]wj[o0]b[s\\$]?\\b",
+        "name": "blowjob",
+        "description": "Detects 'blowjob' and 'blowjobs' with character substitutions"
+    },
+    {
+        "pattern": "\\bc[l1][i1][t\\+]\\b",
+        "name": "clit",
+        "description": "Detects 'clit' with character substitutions"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]?\\b",
+        "name": "cock",
+        "description": "Detects 'cock' and 'cocks' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]u\\b",
+        "name": "cocksu",
+        "description": "Detects partial 'cocksucker' variations"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]u(c|k|ck|q)[e3]d\\b",
+        "name": "cocksucked",
+        "description": "Detects 'cocksucked' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]u(c|k|ck|q)[e3]r\\b",
+        "name": "cocksucker",
+        "description": "Detects 'cocksucker' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]u(c|k|ck|q)[i1]ng\\b",
+        "name": "cocksucking",
+        "description": "Detects 'cocksucking' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)[o0](c|k|ck|q)[s\\$]u(c|k|ck|q)[s\\$]\\b",
+        "name": "cocksucks",
+        "description": "Detects 'cocksucks' with various spellings"
+    },
+    {
+        "pattern": "\\bcum[s\\$]?\\b",
+        "name": "cum",
+        "description": "Detects 'cum' and 'cums' as standalone words"
+    },
+    {
+        "pattern": "\\bcumm??[e3]r\\b",
+        "name": "cummer",
+        "description": "Detects 'cummer' variations"
+    },
+    {
+        "pattern": "\\bcumm?[i1]ngcock\\b",
+        "name": "cummingcock",
+        "description": "Detects 'cumingcock' and 'cummingcock' variations"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)um[s\\$]h[o0][t\\+]\\b",
+        "name": "cumshot",
+        "description": "Detects 'cumshot' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[i1][l1][i1]ngu[s\\$]\\b",
+        "name": "cunilingus",
+        "description": "Detects 'cunilingus' with character substitutions"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[i1][l1][l1][i1]ngu[s\\$]\\b",
+        "name": "cunillingus",
+        "description": "Detects 'cunillingus' spelling variation"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)unn[i1][l1][i1]ngu[s\\$]\\b",
+        "name": "cunnilingus",
+        "description": "Detects 'cunnilingus' with double 'n'"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[t\\+][s\\$]?\\b",
+        "name": "cunt",
+        "description": "Detects 'cunt' and 'cunts' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[t\\+][l1][i1](c|k|ck|q)\\b",
+        "name": "cuntlick",
+        "description": "Detects 'cuntlick' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[t\\+][l1][i1](c|k|ck|q)[e3]r\\b",
+        "name": "cuntlicker",
+        "description": "Detects 'cuntlicker' with various spellings"
+    },
+    {
+        "pattern": "\\b(c|k|ck|q)un[t\\+][l1][i1](c|k|ck|q)[i1]ng\\b",
+        "name": "cuntlicking",
+        "description": "Detects 'cuntlicking' with various spellings"
+    },
+    {
+        "pattern": "\\bcyb[e3]r(ph|f)u(c|k|ck|q)\\b",
+        "name": "cyberfuck",
+        "description": "Detects 'cyberfuck' variations"
+    },
+    {
+        "pattern": "\\bd[a@]mn\\b",
+        "name": "damn",
+        "description": "Detects 'damn' with character substitutions"
+    },
+    {
+        "pattern": "\\bd[i1]ck\\b",
+        "name": "dick",
+        "description": "Detects 'dick' with character substitutions"
+    },
+    {
+        "pattern": "\\bd[i1][l1]d[o0]\\b",
+        "name": "dildo",
+        "description": "Detects 'dildo' with character substitutions"
+    },
+    {
+        "pattern": "\\bd[i1][l1]d[o0][s\\$]\\b",
+        "name": "dildos",
+        "description": "Detects 'dildos' with character substitutions"
+    },
+    {
+        "pattern": "\\bd[i1]n(c|k|ck|q)\\b",
+        "name": "dink",
+        "description": "Detects 'dink' variations"
+    },
+    {
+        "pattern": "\\bd[i1]n(c|k|ck|q)[s\\$]\\b",
+        "name": "dinks",
+        "description": "Detects 'dinks' variations"
+    },
+    {
+        "pattern": "\\b[e3]j[a@]cu[l1]\\b",
+        "name": "ejacul",
+        "description": "Detects partial 'ejaculate' with character substitutions"
+    },
+    {
+        "pattern": "\\b(ph|f)[a@]g[s\\$]?\\b",
+        "name": "fag",
+        "description": "Detects 'fag' and 'fags' with ph/f variations"
+    },
+    {
+        "pattern": "\\b(ph|f)[a@]gg[i1]ng\\b",
+        "name": "fagging",
+        "description": "Detects 'fagging' with character substitutions"
+    },
+    {
+        "pattern": "\\b(ph|f)[a@]gg?[o0][t\\+][s\\$]?\\b",
+        "name": "faggot",
+        "description": "Detects 'faggot' and 'fagot' variations"
+    },
+    {
+        "pattern": "\\b(ph|f)[a@]gg[s\\$]\\b",
+        "name": "faggs",
+        "description": "Detects 'faggs' with character substitutions"
+    },
+    {
+        "pattern": "\\b(ph|f)[e3][l1][l1]?[a@][t\\+][i1][o0]\\b",
+        "name": "fellatio",
+        "description": "Detects 'fellatio' and 'felatio' variations"
+    },
+    {
+        "pattern": "\\b(ph|f)u(c|k|ck|q)\\b",
+        "name": "fuck",
+        "description": "Detects 'fuck' with various spellings"
+    },
+    {
+        "pattern": "\\b(ph|f)u(c|k|ck|q)[s\\$]?\\b",
+        "name": "fucks",
+        "description": "Detects 'fuck' and 'fucks' with various spellings"
+    },
+    {
+        "pattern": "\\bg[a@]ngb[a@]ng[s\\$]?\\b",
+        "name": "gangbang",
+        "description": "Detects 'gangbang' and 'gangbangs' with character substitutions"
+    },
+    {
+        "pattern": "\\bg[a@]ngb[a@]ng[e3]d\\b",
+        "name": "gangbanged",
+        "description": "Detects 'gangbanged' with character substitutions"
+    },
+    {
+        "pattern": "\\bg[a@]y\\b",
+        "name": "gay",
+        "description": "Detects 'gay' with character substitutions"
+    },
+    {
+        "pattern": "\\bh[o0]m?m[o0]\\b",
+        "name": "homo",
+        "description": "Detects 'homo' and 'hommo' variations"
+    },
+    {
+        "pattern": "\\bh[o0]rny\\b",
+        "name": "horny",
+        "description": "Detects 'horny' with character substitutions"
+    },
+    {
+        "pattern": "\\bj[a@](c|k|ck|q)-?[o0](ph|f)(ph|f)?\\b",
+        "name": "jackoff",
+        "description": "Detects 'jackoff' and 'jack-off' variations"
+    },
+    {
+        "pattern": "\\bj[e3]rk-?[o0](ph|f)(ph|f)?\\b",
+        "name": "jerkoff",
+        "description": "Detects 'jerkoff' and 'jerk-off' variations"
+    },
+    {
+        "pattern": "\\bj[i1][s\\$z][s\\$z]?m?\\b",
+        "name": "jizz",
+        "description": "Detects 'jizz', 'jism', and variations"
+    },
+    {
+        "pattern": "\\b[ck][o0]ndum[s\\$]?\\b",
+        "name": "condom",
+        "description": "Detects 'condom' and 'condums' with k/c variations"
+    },
+    {
+        "pattern": "\\bmast(e|ur)b(8|ait|ate)\\b",
+        "name": "masturbate",
+        "description": "Detects 'masturbate' and 'masterbate' variations"
+    },
+    {
+        "pattern": "\\bn+[i1]+[gq]+[e3]*r+[s\\$]*\\b",
+        "name": "n-word",
+        "description": "Detects racial slur with various character substitutions"
+    },
+    {
+        "pattern": "\\b[o0]rg[a@][s\\$][i1]m[s\\$]?\\b",
+        "name": "orgasim",
+        "description": "Detects 'orgasim' misspelling with character substitutions"
+    },
+    {
+        "pattern": "\\b[o0]rg[a@][s\\$]m[s\\$]?\\b",
+        "name": "orgasm",
+        "description": "Detects 'orgasm' and 'orgasms' with character substitutions"
+    },
+    {
+        "pattern": "\\bp[e3]nn?[i1][s\\$]\\b",
+        "name": "penis",
+        "description": "Detects 'penis' and 'pennis' variations"
+    },
+    {
+        "pattern": "\\bp[i1][s\\$][s\\$]\\b",
+        "name": "piss",
+        "description": "Detects 'piss' with character substitutions"
+    },
+    {
+        "pattern": "\\bp[i1][s\\$][s\\$][o0](ph|f)(ph|f)\\b",
+        "name": "pissoff",
+        "description": "Detects 'pissoff' variations"
+    },
+    {
+        "pattern": "\\bp[o0]rn\\b",
+        "name": "porn",
+        "description": "Detects 'porn' with character substitutions"
+    },
+    {
+        "pattern": "\\bp[o0]rn[o0][s\\$]?\\b",
+        "name": "porno",
+        "description": "Detects 'porno' and 'pornos' with character substitutions"
+    },
+    {
+        "pattern": "\\bp[o0]rn[o0]gr[a@]phy\\b",
+        "name": "pornography",
+        "description": "Detects 'pornography' with character substitutions"
+    },
+    {
+        "pattern": "\\bpr[i1]ck[s\\$]?\\b",
+        "name": "prick",
+        "description": "Detects 'prick' and 'pricks' with character substitutions"
+    },
+    {
+        "pattern": "\\bpu[s\\$][s\\$][i1][e3][s\\$]\\b",
+        "name": "pussies",
+        "description": "Detects 'pussies' with character substitutions"
+    },
+    {
+        "pattern": "\\bpu[s\\$][s\\$]y[s\\$]?\\b",
+        "name": "pussy",
+        "description": "Detects 'pussy' and 'pussys' with character substitutions"
+    },
+    {
+        "pattern": "\\b[s\\$][e3]x\\b",
+        "name": "sex",
+        "description": "Detects 'sex' with character substitutions"
+    },
+    {
+        "pattern": "\\b[s\\$]h[i1][t\\+][s\\$]?\\b",
+        "name": "shit",
+        "description": "Detects 'shit' and 'shits' with character substitutions"
+    },
+    {
+        "pattern": "\\b[s\\$][l1]u[t\\+][s\\$]?\\b",
+        "name": "slut",
+        "description": "Detects 'slut' and 'sluts' with character substitutions"
+    },
+    {
+        "pattern": "\\b[s\\$]mu[t\\+][s\\$]?\\b",
+        "name": "smut",
+        "description": "Detects 'smut' and 'smuts' with character substitutions"
+    },
+    {
+        "pattern": "\\b[s\\$]punk[s\\$]?\\b",
+        "name": "spunk",
+        "description": "Detects 'spunk' and 'spunks' with character substitutions"
+    },
+    {
+        "pattern": "\\b[t\\+]w[a@][t\\+][s\\$]?\\b",
+        "name": "twat",
+        "description": "Detects 'twat' and 'twats' with character substitutions"
+    }
+]

@@ -1,0 +1,9 @@
+[
+    {
+        "pattern": "\\d{10}",
+        "name": "UK Unique Taxpayer Identification Number (10 digits)",
+        "description": "UK Unique Taxpayer Identification Number consisting of exactly 10 digits",
+        "specificity": 10,
+        "context_validation": "strict"
+    }
+]

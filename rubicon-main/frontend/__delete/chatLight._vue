@@ -1,0 +1,446 @@
+<template>
+  <v-row class="pt-2" id='chatMainWindow'>
+  <!-- <v-row class="pt-3" id='chatMainWindow' style="height: calc(100vh - 65px);"> -->
+    <v-col cols="2" :style="{ background: '#2089FF'}">
+      <div class="pl-3 pt-0 pb-0"  style="color: black; font-weight: bold;">GPT Model</div>
+      <v-select
+        class="px-1 pt-1"
+        hide-details
+        variant="outlined"
+        density="compact"
+        lable="GPT Model"
+        :items="gptModels"
+        v-model="selectedLLMModel"
+      >
+      </v-select>
+      <div class="pl-3 pt-4 pb-0"  style="color: black; font-weight: bold;">Debug</div>
+      <v-select
+        class="px-1 pt-1"
+        hide-details
+        variant="outlined"
+        density="compact"
+        lable="Debug"
+        :items="debugStatus"
+        v-model="debug"
+      >
+      </v-select>
+      <v-divider class="mx-2 mt-4 mb-2" color="white"></v-divider>
+      <!-- <div class="pl-3 pt-0 pb-0 text-caption"  style="color: black;">Prompt Engineering</div>\ -->
+      <!-- <v-row v-for="(item, index) in history" :key="index">
+        <msg-history @getHistory="getHistory" :debug="debug" :uuid="item.uuid" :query="item.query"></msg-history>
+      </v-row> -->
+    </v-col>
+    <v-col cols="10" id="chatWindow" style="background: white; height: calc(100vh - 72px); overflow-y: auto;">
+      <v-row v-for="(message, index) in conversation.messages" :key="index">
+        <msg-content
+        class="mx-4 my-0"
+        v-show="(debug===true && message.isDebug ===true) || message.isDebug === false"
+            :content="message.content"
+            :model="message.model"
+            :key="message.key"
+            :type="message.type"
+            :isBot="message.isBot"
+            :isDebug="message.isDebug"
+            :createdOn="message.createdOn"
+            :selectedLLMModel="selectedLLMModel"
+          />
+      </v-row>
+      <v-row class="py-10"></v-row>
+
+
+      <v-container fluid style="position: fixed; bottom: 0px; width: calc(100vw - (100vw / 6)); z-index: 1;">
+          <v-textarea
+            auto-grow
+            class="pr-8"
+            bg-color="grey-lighten-3"
+            :label="messageBoxLabel()"
+            persistent-placeholder
+            placeholder="Message"
+            hide-details
+            v-model="query"
+            prepend-inner-icon="mdi-paperclip"
+            rows="1"
+            variant="solo-filled"
+            append-icon="mdi-arrow-up-bold-circle"
+            @click:append="sendMessage"
+          />
+      </v-container>
+      <div style="display: none" v-shortkey="['enter']" @shortkey="sendMessage"></div>
+  </v-col>
+  </v-row>
+</template>
+<script>
+import MsgContent from '@/components/chat/MsgContent'
+import MsgHistory from '@/components/chat/MsgHistory'
+import { notify, getDatetimeString } from '@/_helpers'
+import { v4 as uuidv4 } from 'uuid'
+
+import 'github-markdown-css'
+import axios from 'axios'
+
+export default {
+  name: 'gpt01chat',
+  components: {
+    MsgContent,
+    MsgHistory
+  },
+  data () {
+    return {
+      conversation: {
+        messages: [
+        ]
+      },
+      query: '',
+      tempQuery: '',
+      tempTime: null,
+      gptModels: [{title: 'rubicon', value: 'rubicon'}, {title: 'gpt-4o-mini', value: 'gpt-4o-mini'}, {title: 'gpt-4o', value: 'gpt-4o'}],
+      selectedLLMModel: 'rubicon',
+      history: [],
+
+      // tempAnswer: '',
+      // fistStepEnd: false,
+      // tempAnswerCounter: 0,
+      debugStatus: [{ title: 'True', value: true }, { title: 'False', value: false }],
+      debug: false,
+      chatUUID: null,
+      eventSource: null
+      // history: [{
+      //   uuid: '2r32mm-r32r32r3-r32r32rk-r2r23',
+      //   query: 'Hello'
+      // }, {
+      //   uuid: 'fe22fe2-f2f-ffffr3-r32r32rk-r2r23',
+      //   query: 'Get last element from a list in python'
+      // }]
+    }
+  },
+  methods: {
+    updateQueryReady () {
+      if (this.queryDimension !== null && this.queryMeasure !== null && this.queryPersoalizedInfo !== null) {
+        this.queryReady = true
+      } else {
+        this.queryRead = false
+      }
+    },
+    initialize () {
+      this.tempTime = null
+      // this.query = null
+      // this.queryResult = null
+      // this.llmQuery = null
+    },
+    messageBoxLabel () {
+      const message = 'Model : ' + this.selectedLLMModel.toUpperCase()
+      return message
+    },
+    scroll () {
+      const chatWindow = document.getElementById('chatWindow')
+      chatWindow.scrollTop = chatWindow.scrollHeight
+    },
+    saveMessages (message) {
+      const now = new Date()
+      if (this.tempTime === null) {
+        message.createdOn = getDatetimeString(now)
+        this.tempTime = now
+      } else {
+        const timeDiff = now.getTime() - this.tempTime.getTime()
+        message.createdOn = getDatetimeString(now) + ' (' + String(timeDiff / 1000) + 'Sec)'
+        this.tempTime = now
+      }
+
+      this.conversation.messages.push(message)
+      // alphaGPT.nerp.text2anlaytics('insertHistory', message)
+      this.scroll()
+    },
+    async fetchResponse () {
+      const url = 'api/rubicon/completion/'
+      const formData = new FormData()
+      const answer = {
+        isBot: true,
+        key: 0,
+        uuid: this.chatUUID,
+        content: '',
+        model: this.selectedLLMModel
+      }
+      this.saveMessages(answer)
+      // this.conversation.messages.push(answer)
+      formData.append('model', this.selectedLLMModel)
+      formData.append('prompt', this.tempQuery)
+
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+          console.error('Failed to connect:', response.statusText);
+          return;
+      }
+
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder('utf-8')
+      let responseContent = ''
+
+      while (true) {
+        const { done, value } = await reader.read()
+
+        if (done) {
+          console.log("SSE stream closed by server.")
+          break
+        }
+
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split("\n")
+        lines.forEach(line => {
+          if (line.startsWith("data: ")) {
+            const eventData = line.replace("data: ", "").replace("<br>", "\n").replace("<br>", "\n").replace("<br>", "\n")
+            // console.log("Event data:", eventData)
+            if (eventData !== 'None') {
+              responseContent = responseContent + eventData
+              this.conversation.messages[this.conversation.messages.length - 1].content = responseContent
+            }
+          }
+        })
+      }
+      this.query = ''
+      this.scroll()
+    },
+    async sendMessage () {
+      console.log('send message')
+      this.queryReady = false
+      this.tempQuery = this.query
+      this.chatUUID = uuidv4()
+
+      const query = {
+        query: {
+          isBot: false,
+          isDebug: false,
+          type: 'query',
+          uuid: this.chatUUID,
+          content: this.tempQuery,
+          model: this.selectedLLMModel
+        }
+      }
+      this.saveMessages(query.query)
+
+      // if (this.eventSource) {
+      //   this.eventSource.close()  // Close any previous connections
+      // }
+
+
+      // const axiosConfig = {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // }
+
+
+
+      // Start fetching the SSE data
+      this.fetchResponse()
+
+      // const reader = response.body.pipeThrough(new TextDecoderStream()).getReader()
+      // while (true) {
+      //   const {value, done} = await reader.read()
+      //   if (done) break
+      //   console.log('Received', value)
+      // }
+
+
+      // const urlEncoded = encodeURIComponent(this.tempQuery)
+      // const url = `/api/rubicon/completion/${this.selectedLLMModel}/${urlEncoded}`
+
+      // this.eventSource = new EventSource(url)
+
+      // this.eventSource.onopen = () => {
+      //     console.log("Connection to server opened");
+      // }
+
+      // this.eventSource.onmessage = event => {
+      //   console.log("event.data = ", event.data)
+      //   // sseData.innerHTML += event.data;
+      //   // Handle errors
+      //   this.eventSource.onerror = (error) => {
+      //     // console.error("Error occurred in SSE connection", error)
+      //     this.eventSource.close()  // Optionally close connection on error
+      //   }
+      // }
+    }
+  }
+}
+</script>
+
+<style scoped>
+#chatMainWindow {
+  overflow-y: hidden;
+}
+
+#chatPage {
+  height: calc(100vh - 230px);
+}
+</style>
+
+<style>
+/* div.chat-select-color > div.v-input__control > div.v-input__slot > div.v-select__slot > div.v-select__selections > div {
+  padding-left: 10px;
+} */
+
+#chatWindow > div > div > div.v-input__append > i {
+  color: #0689d8;
+  font-size: 36px;
+}
+</style>
+
+<style>
+.code-prefix {
+  color: #000000;
+  border-radius: 5px;
+  font-size: 1.0em;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  text-shadow: none;
+  margin: 12px 0px 12px 0px;
+  overflow: auto;
+  /* background: #1e1e1e; */
+  background: #f2f2f2;
+}
+
+.code-body {
+  padding: 8px 12px;
+  /* margin: 12px; */
+}
+
+/*
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+*/
+
+code {
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+  font-weight: 400 !important;
+  font-size: 0.9em !important;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+
+  color: #24292e;
+  background: #ffffff;
+}
+
+.hljs-comment,
+.hljs-punctuation {
+  color: #6a737d;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-meta,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: #005cc5;
+}
+
+.hljs-variable,
+.hljs-literal,
+.hljs-number,
+.hljs-doctag {
+  color: #e36209;
+}
+
+.hljs-params {
+  color: #24292e;
+}
+
+.hljs-function {
+  color: #6f42c1;
+}
+
+.hljs-class,
+.hljs-tag,
+.hljs-title,
+.hljs-built_in {
+  color: #22863a;
+}
+
+.hljs-keyword,
+.hljs-type,
+.hljs-builtin-name,
+.hljs-meta-keyword,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #d73a49;
+}
+
+.hljs-string,
+.hljs-undefined {
+  color: #032f62;
+}
+
+.hljs-regexp {
+  color: #032f62;
+}
+
+.hljs-symbol {
+  color: #005cc5;
+}
+
+.hljs-bullet {
+  color: #e36209;
+}
+
+.hljs-section {
+  color: #005cc5;
+  font-weight: bold;
+}
+
+.hljs-quote,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  color: #22863a;
+}
+
+.hljs-emphasis {
+  color: #e36209;
+  font-style: italic;
+}
+
+.hljs-strong {
+  color: #e36209;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.hljs-addition {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.hljs-link {
+  color: #032f62;
+  font-style: underline;
+}
+button.copy-action {
+  align-self: flex-end;
+  margin: 0px 10px 0px 0px;
+}
+
+</style>

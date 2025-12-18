@@ -1,0 +1,16 @@
+[
+    {
+        "pattern": "\\d{2}[\\s-]?\\d{6}[\\s-]?\\d{2}",
+        "name": "Korean Driver License Number Pattern 1 (Optional Separators)",
+        "description": "Korean driver license number Pattern 1 with optional separators: XX-XXXXXX-XX, XX XXXXXX XX, or XXXXXXXXXX",
+        "specificity": 12,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "(?:(?:1[1-9]|2[0-68])[\\s-]?)?\\d{2}[\\s-]?\\d{6}[\\s-]?\\d{2}",
+        "name": "Korean Driver License Number Pattern 2 (Optional Separators)",
+        "description": "Korean driver license number Pattern 2 with optional prefix and separators: [XX-]XX-XXXXXX-XX, [XX ]XX XXXXXX XX, or XXXXXXXXXX",
+        "specificity": 15,
+        "context_validation": "strict"
+    }
+]

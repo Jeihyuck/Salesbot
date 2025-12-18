@@ -1,0 +1,81 @@
+<template>
+  <alphaDataTable-view :alphaModel="alphaModel"></alphaDataTable-view>
+</template>
+
+<script>
+import { rubiconAdmin } from '@/_services'
+import alphaDataTableView from '@/components/alpha/alphaDataTableView.vue'
+// import { addIndexToArray, notify } from '@/_helpers'
+
+export default {
+  components: {
+    alphaConfirm: () => import('@/components/alpha/alphaConfirm'),
+    alphaDataTableView
+  },
+  data: () => ({
+    alphaModel: {
+      tableUniqueID: 'intelligenceTriage',
+      itemName: 'Triage RAG Data',
+      paging: { page: 1, itemsPerPage: 15 },
+      function: rubiconAdmin.intelligenceTriage.table,
+      crud: [true, true, true, true],
+      headerId: 'b105c95f-f515-43c7-8e24-1ee64973e857',
+      filter: {
+        hideBoarder: false,
+        language: {
+          label: 'Language',
+          type: 'dropdown',
+          clearable: true,
+          multiple: true,
+          selector: ['EN', 'KO'],
+          selected: null,
+          col: 2
+        },
+        intelligence: {
+          label: 'Intelligence',
+          type: 'dropdown',
+          clearable: true,
+          multiple: true,
+          selector: ['PD', 'EX', 'CS', 'CP', 'ST', 'SA'],
+          selected: null,
+          col: 3
+        },
+        type: {
+          label: 'Type',
+          type: 'dropdown',
+          clearable: true,
+          multiple: true,
+          selector: [{title: 'Structured', value: 'S'}, {title: 'Unstructured', value: 'U'}, {title: 'Mixed', value: 'M'}],
+          selected: null,
+          col: 3
+        },
+      },
+      dialogWidth: '600px',
+      dialog: {
+        language: {
+          label: 'Language',
+          type: 'dropdown',
+          multiple: false,
+          required: true,
+          selector: ['EN', 'KO'],
+          selected: ''
+        },
+        query: {
+          label: 'Query',
+          type: 'text',
+          required: true,
+          selected: ''
+        },
+        type: {
+          label: 'Type',
+          type: 'dropdown',
+          multiple: false,
+          required: true,
+          selector: [{title: 'Structured', value: 'S'}, {title: 'Unstructured', value: 'U'}, {title: 'Mixed', value: 'M'}],
+          selected: ''
+        }
+      }
+    },
+  })
+}
+</script>

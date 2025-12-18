@@ -1,0 +1,78 @@
+### Test ProductView
+POST http://127.0.0.1:9999/api/rubicon_data/product/
+Content-Type: application/json
+
+{
+    "model": "SM-S918NZREKOO"
+}
+
+### Test ProductSpecValueView
+POST http://127.0.0.1:9999/api/rubicon_data/productspec/
+Content-Type: application/json
+
+{
+    "product_name": "갤럭시 S23 Ultra 자급제 (삼성닷컴 단독컬러)",
+    "spec_name_kos": [{"spec_name_ko": "종류 (Main)"}, {"spec_name_ko": "비디오 재생 시간 (Hours, Wireless)"}]
+}
+
+### Test ProductSpecValueView
+POST http://127.0.0.1:9999/api/rubicon_data/productspecvalue/
+Content-Type: application/json
+
+{
+    "product_name": "갤럭시 S23 Ultra 자급제 (삼성닷컴 단독컬러)",
+    "spec_name_kos": [{"spec_name_ko": "종류 (Main)"}]
+}
+
+### Test ProductPivotView
+POST http://127.0.0.1:9999/api/rubicon_data/productpivot/
+Content-Type: application/json
+
+{
+    "model": "SM-S918NZREKOO"
+}
+
+### Test ProductSpecView
+POST http://127.0.0.1:9999/api/rubicon_data/productspec/
+Content-Type: application/json
+
+{
+    "product_name": "갤럭시 S23 Ultra 자급제 (삼성닷컴 단독컬러)",
+    "spec_name_kos": [{"spec_name_ko": "종류 (Main)"}]
+}
+
+### Test PriceView
+POST http://127.0.0.1:9999/api/rubicon_data/price/
+Content-Type: application/json
+
+{
+    "model": "SM-A135NZWEKOO"
+}
+
+### Test PriceView Demo 2
+POST http://127.0.0.1:9999/api/rubicon_data/price/
+Content-Type: application/json
+
+{
+    "model": "SM-S916NLIEKOO"
+}
+
+### Testing Dynamic Filter View
+POST http://127.0.0.1:9999/api/rubicon_data/dynamicfilter
+Content-Type: application/json
+
+{
+    "view":"ProductSpec",
+    "field":["goods_name","display_name","spec_value"],
+    "filter":[{"field":"goods_name","operator":"IN","code":["갤럭시 S23 Ultra 자급제 (삼성닷컴 단독컬러)","갤럭시 S23+ 자급제<br>(삼성닷컴 단독컬러)"]},
+                {"field":"display_name","operator":"IN","code":["무게(g)","메모리 (GB)"]}]
+}
+
+### Testing Output Format
+Content-Type: application/json
+
+POST http://13.124.66.126/api/rubicon/completion/
+{
+    "model": "rubicon_test",
+    "message"
+}

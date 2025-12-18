@@ -1,0 +1,111 @@
+# Auto-generated ner_fields.py file (STG/PRD environment - dynamic loading)
+# Generated on: 2025-04-30 16:46:18
+# Do not modify this file directly - it will be overwritten
+
+"""
+NER field constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import ner_fields
+    print(ner_fields.SOME_FIELD)
+"""
+
+import sys
+import logging
+from django.utils.text import slugify
+
+sys.path.append("/www/alpha/")
+
+# Define a placeholder for each constant that will dynamically load values
+# This helps with IDE auto-completion while still loading values at runtime
+
+# DATE will be dynamically loaded
+# ERROR_FAILURE will be dynamically loaded
+# EXTEND_REQUEST will be dynamically loaded
+# INSTALLATION will be dynamically loaded
+# INTEREST_PERIOD will be dynamically loaded
+# LOCATION will be dynamically loaded
+# PAYMENT_CARD will be dynamically loaded
+# PRODUCT_CODE will be dynamically loaded
+# PRODUCT_COLOR will be dynamically loaded
+# PRODUCT_MODEL will be dynamically loaded
+# PRODUCT_OPTION will be dynamically loaded
+# PRODUCT_PRICE will be dynamically loaded
+# PRODUCT_RECOMMEND will be dynamically loaded
+# PRODUCT_SPEC will be dynamically loaded
+# PRODUCT_SUPPORT will be dynamically loaded
+# PROMOTION_NAME will be dynamically loaded
+# SERVICE_CENTER will be dynamically loaded
+# SPLIT_PAY will be dynamically loaded
+# STORE will be dynamically loaded
+# VOUCHER_REWARDS will be dynamically loaded
+
+# Internal class to handle dynamic loading of NER field constants
+class _NerFieldLoader:
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(_NerFieldLoader, cls).__new__(cls)
+        return cls._instance
+    
+    def __getattr__(self, name):
+        # Load NER fields on first access
+        if not self._initialized:
+            self._load_ner_fields()
+        
+        # Return the attribute if it exists
+        if name in self.__dict__:
+            return self.__dict__[name]
+        
+        # If we don't have the attribute, raise AttributeError
+        raise AttributeError(f"'{self.__class__.__name__}' has no attribute '{name}'")
+    
+    def _load_ner_fields(self):
+        try:
+            # Import here to avoid circular imports during Django startup
+            from apps.rubicon_v3.models import Ner_Expression_Field
+            
+            # Get all distinct NER field names from the database where active is True
+            ner_fields = Ner_Expression_Field.objects.filter(active=True).values_list("field_name", flat=True).distinct()
+            
+            # Create constants for each NER field
+            for field in ner_fields:
+                if field:
+                    # Create a valid Python identifier (uppercase with underscores)
+                    constant_name = slugify(field).upper()
+                    # Set the constant value on this instance
+                    setattr(self, constant_name, field)
+            
+            self._initialized = True
+        except Exception as e:
+            logging.error(f"Failed to load NER field constants: {e}")
+    
+    def refresh(self):
+        # Refresh NER field constants from the database
+        try:
+            # Clear existing attributes
+            attrs = list(self.__dict__.keys())
+            for attr in attrs:
+                if attr != "_initialized" and not attr.startswith("_"):
+                    delattr(self, attr)
+            
+            # Reset initialization flag
+            self._initialized = False
+            
+            # Force reload by accessing a dummy attribute
+            try:
+                dummy = self.DUMMY_ATTRIBUTE
+            except AttributeError:
+                pass
+                
+            logging.info("NER field constants have been refreshed successfully")
+            return True
+        except Exception as e:
+            logging.error(f"Failed to refresh NER field constants: {e}")
+            return False
+
+# Export a singleton instance as the module
+sys.modules[__name__] = _NerFieldLoader()
+
+# Hash: 72d15acb (NER field data fingerprint)

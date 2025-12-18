@@ -1,0 +1,16 @@
+[
+    {
+        "pattern": "[A-Za-z9]{5}\\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\\d[A-Za-z9]{2}\\d{5}",
+        "name": "UK Driver License Number (Male)",
+        "description": "UK driver license number (male version) with birth date validation (MMDDY format)",
+        "specificity": 18,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "[A-Za-z9]{5}\\d(5[1-9]|6[0-2])(0[1-9]|[12][0-9]|3[01])\\d[A-Za-z9]{2}\\d{5}",
+        "name": "UK Driver License Number (Female)",
+        "description": "UK driver license number (female version adds 50 to month) with birth date validation (MMDDY format)",
+        "specificity": 18,
+        "context_validation": "strict"
+    }
+]

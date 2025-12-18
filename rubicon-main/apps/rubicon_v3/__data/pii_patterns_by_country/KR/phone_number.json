@@ -1,0 +1,22 @@
+[
+    {
+        "pattern": "\\d{4}[\\s-]?\\d{4}",
+        "name": "Korean Phone Number Simplified (8 digits, optional separator)",
+        "description": "Korean phone number without prefix, with optional separator: 1234-5678, 1234 5678, or 12345678",
+        "specificity": 9,
+        "whitelist": [
+            "1588-3366",
+            "1588-6084",
+            "1588-4190",
+            "1811-9228"
+        ],
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "\\+?[\\s-]?82[\\s-]?0?10[\\s-]?\\d{4}[\\s-]?\\d{4}",
+        "name": "Korean Phone Number (Flexible)",
+        "description": "Korean phone number with optional country code, prefix, and separators: +82 010-1234-5678, 01012345678, +82-10-1234-5678, etc.",
+        "specificity": 19,
+        "context_validation": "strict"
+    }
+]

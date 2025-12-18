@@ -1,0 +1,58 @@
+# Auto-generated intelligences.py file (DEV environment - static constants)
+# Generated on: 2025-05-12 10:14:35
+# Do not modify this file directly - it will be overwritten
+
+"""
+Intelligence constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import intelligences
+    print(intelligences.SOME_INTELLIGENCE)
+"""
+
+BUNDLE_DISCOUNT = 'Bundle Discount'
+BUY_INFORMATION = 'Buy Information'
+BUYING_POLICY = 'Buying Policy'
+COMPETITOR_COMPARISON = 'Competitor Comparison'
+CONDITIONAL_RECOMMENDATION = 'Conditional Recommendation'
+CONSUMABLES_ACCESSORIES_RECOMMENDATION = 'Consumables/Accessories Recommendation'
+DELIVERY_POLICY = 'Delivery Policy'
+ERROR_AND_FAILURE_RESPONSE = 'Error and Failure Response'
+EVENT_PROMOTION = 'Event/Promotion'
+EXCHANGE_RETURN_POLICY = 'Exchange/Return Policy'
+GENERAL_CONNECTION = 'General Connection'
+GENERAL_INFORMATION = 'General Information'
+GENERAL_RECOMMENDATION = 'General Recommendation'
+IN_CENTER_GUIDE = 'In-Center Guide'
+IN_STORE_GUIDE = 'In-Store Guide'
+INFORMATION_RESTRICTED_FOR_CHANNEL = 'Information Restricted For Channel'
+INSTALLATION_CONDITIONS_AND_STANDARDS = 'Installation Conditions And Standards'
+INSTALLATION_INQUIRY = 'Installation Inquiry'
+ORDER_DELIVERY_TRACKING = 'Order/Delivery Tracking'
+ORDERS_AND_DELIVERY = 'Orders and Delivery'
+PAYMENT_BENEFIT = 'Payment Benefit'
+PAYMENT_BENEFIT_EXPLANATION = 'Payment Benefit Explanation'
+PAYMENT_METHOD_INFORMATION = 'Payment Method Information'
+PERSONALIZED_COMPARISON = 'Personalized Comparison'
+PERSONALIZED_RECOMMENDATION = 'Personalized Recommendation'
+PRICE_EXPLANATION = 'Price Explanation'
+PROBLEM_SOLVING = 'Problem Solving'
+PRODUCT_COMPARISON = 'Product Comparison'
+PRODUCT_DESCRIPTION = 'Product Description'
+PRODUCT_FEATURE = 'Product Feature'
+PRODUCT_FUNCTION = 'Product Function'
+PRODUCT_INVENTORY_AND_RESTOCKING = 'Product Inventory And Restocking'
+PRODUCT_RECOMMENDATION = 'Product Recommendation'
+PRODUCT_REVIEW = 'Product Review'
+PRODUCT_SPECIFICATION = 'Product Specification'
+PURCHASE_POLICY = 'Purchase Policy'
+REPAIR_COST_GUIDE = 'Repair Cost Guide'
+SAMSUNG_CARE_PLUS_EXPLANATION = 'Samsung Care Plus Explanation'
+SAMSUNG_COMPARISON = 'Samsung Comparison'
+SAMSUNG_STORE_INFORMATION = 'Samsung Store Information'
+SERVICE_CENTER_INFORMATION = 'Service Center Information'
+SERVICE_AND_REPAIR_GUIDE = 'Service and Repair Guide'
+SMARTTHINGS_EXPLANATION = 'Smartthings Explanation'
+STORE_INFORMATION = 'Store Information'
+USAGE_EXPLANATION = 'Usage Explanation'
+USAGE_MANUAL = 'Usage Manual'
+# Hash: 4c4517e5 (intelligences data fingerprint)

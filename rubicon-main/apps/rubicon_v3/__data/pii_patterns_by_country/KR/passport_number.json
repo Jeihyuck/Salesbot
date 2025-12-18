@@ -1,0 +1,16 @@
+[
+    {
+        "pattern": "[MSROD]\\d{8}",
+        "name": "Korean Passport Number (Format 1)",
+        "description": "Korean passport number: Letter (M,S,R,O,D) + 8 digits",
+        "specificity": 10,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "[MSROD]\\d{3}[A-Z]\\d{4}",
+        "name": "Korean Passport Number (Format 2)",
+        "description": "Korean passport number: Letter (M,S,R,O,D) + 3 digits + letter + 4 digits",
+        "specificity": 12,
+        "context_validation": "strict"
+    }
+]

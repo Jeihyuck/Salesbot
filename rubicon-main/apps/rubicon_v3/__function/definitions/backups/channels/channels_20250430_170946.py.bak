@@ -1,0 +1,111 @@
+# Auto-generated channels.py file (STG/PRD environment - dynamic loading)
+# Generated on: 2025-04-30 16:46:18
+# Do not modify this file directly - it will be overwritten
+
+"""
+Channel constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import channels
+    print(channels.SOME_CHANNEL)
+"""
+
+import sys
+import logging
+from django.utils.text import slugify
+
+sys.path.append("/www/alpha/")
+
+# Define a placeholder for each constant that will dynamically load values
+# This helps with IDE auto-completion while still loading values at runtime
+
+# AIBOT will be dynamically loaded
+# AITOOL will be dynamically loaded
+# AITOOL_KR will be dynamically loaded
+# DEV_DEBUG will be dynamically loaded
+# DEV_TEST will be dynamically loaded
+# STAR will be dynamically loaded
+# STAR_DA will be dynamically loaded
+# STAR_GLOBAL will be dynamically loaded
+# STAR_VD will be dynamically loaded
+# SAMSUNGPLUS will be dynamically loaded
+# SAMSUNGPLUS_GLOBAL will be dynamically loaded
+# SECURITY_TEST will be dynamically loaded
+# SPRINKLR will be dynamically loaded
+# SPRINKLR_DEBUG will be dynamically loaded
+# SPRINKLR_KR will be dynamically loaded
+# SPRINKLR_UK will be dynamically loaded
+# UT_TEST_20241112 will be dynamically loaded
+# UT_BU will be dynamically loaded
+# UT_CX will be dynamically loaded
+# UT_EXT will be dynamically loaded
+
+# Internal class to handle dynamic loading of channel constants
+class _ChannelLoader:
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(_ChannelLoader, cls).__new__(cls)
+        return cls._instance
+    
+    def __getattr__(self, name):
+        # Load channels on first access
+        if not self._initialized:
+            self._load_channels()
+        
+        # Return the attribute if it exists
+        if name in self.__dict__:
+            return self.__dict__[name]
+        
+        # If we don't have the attribute, raise AttributeError
+        raise AttributeError(f"'{self.__class__.__name__}' has no attribute '{name}'")
+    
+    def _load_channels(self):
+        try:
+            # Import here to avoid circular imports during Django startup
+            from apps.rubicon_v3.models import Channel
+            
+            # Get all distinct channel names from the database
+            channels = Channel.objects.values_list("channel", flat=True).distinct()
+            
+            # Create constants for each channel
+            for channel in channels:
+                if channel:
+                    # Create a valid Python identifier (uppercase with underscores)
+                    constant_name = slugify(channel).replace("-", "_").upper()
+                    # Set the constant value on this instance
+                    setattr(self, constant_name, channel)
+            
+            self._initialized = True
+        except Exception as e:
+            logging.error(f"Failed to load channel constants: {e}")
+    
+    def refresh(self):
+        # Refresh channel constants from the database
+        try:
+            # Clear existing attributes
+            attrs = list(self.__dict__.keys())
+            for attr in attrs:
+                if attr != "_initialized" and not attr.startswith("_"):
+                    delattr(self, attr)
+            
+            # Reset initialization flag
+            self._initialized = False
+            
+            # Force reload by accessing a dummy attribute
+            try:
+                dummy = self.DUMMY_ATTRIBUTE
+            except AttributeError:
+                pass
+                
+            logging.info("Channel constants have been refreshed successfully")
+            return True
+        except Exception as e:
+            logging.error(f"Failed to refresh channel constants: {e}")
+            return False
+
+# Export a singleton instance as the module
+sys.modules[__name__] = _ChannelLoader()
+
+# Hash: e3fa2abf (channel data fingerprint)

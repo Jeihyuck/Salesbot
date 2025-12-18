@@ -1,0 +1,16 @@
+[
+    {
+        "pattern": "(?:\\d{3}|\\d{10})\\s\\d{3}\\s\\d{4}",
+        "name": "UK NHS Number (With Spaces)",
+        "description": "UK National Health Service number with required spaces (3-3-4 or 10-3-4 format)",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "(?:\\d{13}|\\d{17})",
+        "name": "UK NHS Number (No Spaces)",
+        "description": "UK National Health Service number without spaces (13 or 17 digits)",
+        "specificity": 17,
+        "context_validation": "strict"
+    }
+]

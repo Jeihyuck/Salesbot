@@ -1,0 +1,9 @@
+[
+    {
+        "pattern": "(?![DFIQUV]|[A-Z][O]|BG|GB|KN|NK|NT|TN|ZZ)[A-CEGHJ-NPR-TW-Z][A-CEGHJ-NPR-TW-Z][\\s-]?\\d{2}[\\s-]?\\d{2}[\\s-]?\\d{2}[\\s-]?[ABCD]",
+        "name": "UK National Insurance Number (Optional Separators)",
+        "description": "UK NINO with optional spaces or dashes, validates prefix exclusions",
+        "specificity": 13,
+        "context_validation": "strict"
+    }
+]

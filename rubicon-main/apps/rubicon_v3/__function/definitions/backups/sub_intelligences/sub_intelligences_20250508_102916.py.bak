@@ -1,0 +1,29 @@
+# Auto-generated sub_intelligences.py file (DEV environment - static constants)
+# Generated on: 2025-05-08 09:15:45
+# Do not modify this file directly - it will be overwritten
+
+"""
+Sub_Intelligence constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import sub_intelligences
+    print(sub_intelligences.SOME_SUB_INTELLIGENCE)
+"""
+
+COMPETITOR_COMPARISON = 'Competitor Comparison'
+CONDITIONAL_RECOMMENDATION = 'Conditional Recommendation'
+CONSUMABLES_ACCESSORIES_RECOMMENDATION = 'Consumables/Accessories Recommendation'
+GENERAL_RECOMMENDATION = 'General Recommendation'
+IN_STORE_GUIDE = 'In-Store Guide'
+PAYMENT_BENEFIT = 'Payment Benefit'
+PAYMENT_METHOD_INFORMATION = 'Payment Method Information'
+PERSONALIZED_COMPARISON = 'Personalized Comparison'
+PERSONALIZED_RECOMMENDATION = 'Personalized Recommendation'
+PRICE_PROMOTION_EXPLANATION = 'Price/Promotion Explanation'
+PRODUCT_FEATURE = 'Product Feature'
+PRODUCT_FUNCTION = 'Product Function'
+PRODUCT_INVENTORY_AND_RESTOCKING = 'Product Inventory And Restocking'
+PRODUCT_REVIEW = 'Product Review'
+PRODUCT_SPECIFICATION = 'Product Specification'
+SAMSUNG_COMPARISON = 'Samsung Comparison'
+SAMSUNG_STORE_INFORMATION = 'Samsung Store Information'
+# Hash: 128ed892 (sub_intelligences data fingerprint)

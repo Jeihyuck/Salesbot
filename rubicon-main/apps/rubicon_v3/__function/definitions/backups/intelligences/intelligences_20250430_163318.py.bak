@@ -1,0 +1,110 @@
+# Auto-generated intelligences.py file (STG/PRD environment - dynamic loading)
+# Generated on: 2025-04-30 16:32:06
+# Do not modify this file directly - it will be overwritten
+
+"""
+Intelligence constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import intelligences
+    print(intelligences.SOME_INTELLIGENCE)
+"""
+
+import sys
+import logging
+from django.utils.text import slugify
+
+sys.path.append("/www/alpha/")
+
+# Define a placeholder for each constant that will dynamically load values
+# This helps with IDE auto-completion while still loading values at runtime
+
+# BUY_INFORMATION will be dynamically loaded
+# CUSTOMER_INFORMATION will be dynamically loaded
+# ERROR_AND_FAILURE_RESPONSE will be dynamically loaded
+# EXCHANGE_AND_RETURN will be dynamically loaded
+# GENERAL_INFORMATION will be dynamically loaded
+# INFORMATION_RESTRICTED_FOR_CHANNEL will be dynamically loaded
+# INSTALLATION_INQUIRY will be dynamically loaded
+# MDE will be dynamically loaded
+# ORDERS_AND_DELIVERY will be dynamically loaded
+# PRICE_BENEFIT_INFORMATION will be dynamically loaded
+# PRODUCT_COMPARISON will be dynamically loaded
+# PRODUCT_DESCRIPTION will be dynamically loaded
+# PRODUCT_RECOMMENDATION will be dynamically loaded
+# SERVICE_AND_REPAIR_GUIDE will be dynamically loaded
+# STORE_INFORMATION will be dynamically loaded
+# SUPPORT_FOR_PRODUCT_MANAGEMENT will be dynamically loaded
+# USAGE_MANUAL will be dynamically loaded
+
+# Internal class to handle dynamic loading of intelligence constants
+class _IntelligencesLoader:
+    _instance = None
+    _initialized = False
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(_IntelligencesLoader, cls).__new__(cls)
+        return cls._instance
+    
+    def __getattr__(self, name):
+        # Load intelligence values on first access
+        if not self._initialized:
+            self._load_intelligences()
+        
+        # Return the attribute if it exists
+        if name in self.__dict__:
+            return self.__dict__[name]
+        
+        # If we don't have the attribute, raise AttributeError
+        raise AttributeError(f"'{self.__class__.__name__}' has no attribute '{name}'")
+    
+    def _load_intelligences(self):
+        try:
+            # Import here to avoid circular imports during Django startup
+            from apps.rubicon_v3.models import Intelligence
+            
+            # Get all distinct intelligence values from the database
+            intel_values = Intelligence.objects.values_list("intelligence", flat=True).distinct()
+            
+            # Create constants for each intelligence value
+            for value in intel_values:
+                if value:
+                    # Create a valid Python identifier (uppercase with underscores)
+                    # Replace special characters before slugify
+                    processed_value = value.replace("/", "_").replace("-", "_")
+                    constant_name = slugify(processed_value).replace("-", "_").upper()
+                    # Set the constant value on this instance
+                    setattr(self, constant_name, value)
+            
+            self._initialized = True
+        except Exception as e:
+            logging.error(f"Failed to load intelligence constants: {e}")
+    
+    def refresh(self):
+        # Refresh intelligence constants from the database
+        try:
+            # Clear existing attributes
+            attrs = list(self.__dict__.keys())
+            for attr in attrs:
+                if attr != "_initialized" and not attr.startswith("_"):
+                    delattr(self, attr)
+            
+            # Reset initialization flag
+            self._initialized = False
+            
+            # Force reload by accessing a dummy attribute
+            try:
+                dummy = self.DUMMY_ATTRIBUTE
+            except AttributeError:
+                pass
+                
+            logging.info("Intelligence constants have been refreshed successfully")
+            return True
+        except Exception as e:
+            logging.error(f"Failed to refresh intelligence constants: {e}")
+            return False
+
+# Export a singleton instance as the module
+sys.modules[__name__] = _IntelligencesLoader()
+
+# Hash: 840686de (intelligences data fingerprint)

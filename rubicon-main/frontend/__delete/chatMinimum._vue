@@ -1,0 +1,67 @@
+<template>
+  <v-row>
+    <v-btn @click="sendMessage"></v-btn>
+  </v-row>
+  <v-row>
+    <div>{{responseContent}}</div>
+  </v-row>
+</template>
+<script>
+export default {
+  name: 'chat',
+  data () {
+    return {
+      responseContent: ''
+    }
+  },
+  methods: {
+    async fetchResponse () {
+      const url = 'api/rubicon/completion/'
+      const model = 'rubicon'
+      const query = 'tell me about galaxy s24'
+
+      const formData = new FormData()
+      formData.append('model', model)
+      formData.append('prompt', query)
+
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+          console.error('Failed to connect:', response.statusText);
+          return;
+      }
+
+      const reader = response.body.getReader()
+      const decoder = new TextDecoder('utf-8')
+
+      while (true) {
+        const { done, value } = await reader.read()
+
+        if (done) {
+          console.log("SSE stream closed by server.")
+          break
+        }
+
+        const chunk = decoder.decode(value, { stream: true })
+        const lines = chunk.split("\n")
+        lines.forEach(line => {
+          if (line.startsWith("data: ")) {
+            const eventData = line.replace("data: ", "").replace(/<br\s*\/?>/gi, '\n')
+            if (eventData !== 'None') {
+              console.log("Event data:", eventData)
+              this.responseContent = this.responseContent + eventData
+            }
+          }
+        })
+        console.log(this.responseContent)
+      }
+    },
+    async sendMessage () {
+      this.fetchResponse()
+    }
+  }
+}
+</script>

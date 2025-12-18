@@ -1,0 +1,79 @@
+[
+    {
+        "pattern": "4[0-9]{3}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "Visa Credit Card Number (16-digit)",
+        "description": "Visa credit card number with optional separators: 4xxx-xxxx-xxxx-xxxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "4[0-9]{3}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{3}",
+        "name": "Visa Credit Card Number (15-digit)",
+        "description": "Visa credit card number (15-digit) with optional separators: 4xxx-xxxx-xxxx-xxx",
+        "specificity": 18,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "5[1-5][0-9]{2}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "MasterCard Credit Card Number",
+        "description": "MasterCard credit card number with optional separators: 5xxx-xxxx-xxxx-xxxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "3[47][0-9]{2}[\\s-]?[0-9]{6}[\\s-]?[0-9]{5}",
+        "name": "American Express Credit Card Number",
+        "description": "American Express credit card number with optional separators: 3xxx-xxxxxx-xxxxx",
+        "specificity": 17,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "3(?:0[0-5]|[68][0-9])[0-9][\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "Diners Club Credit Card Number",
+        "description": "Diners Club credit card number with optional separators: 30xx-xxxx-xxxx-xxxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "6(?:011|5[0-9]{2})[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "Discover Credit Card Number",
+        "description": "Discover credit card number with optional separators: 6xxx-xxxx-xxxx-xxxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "(?:2131|1800|35[0-9]{2})[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "JCB Credit Card Number",
+        "description": "JCB credit card number with optional separators: 35xx-xxxx-xxxx-xxxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "62[0-9]{2}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}",
+        "name": "UnionPay Credit Card Number (16-digit)",
+        "description": "UnionPay credit card number (16 digits) with optional separators: 62xx-xxxx-xxxx-xxxx",
+        "specificity": 16,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "62[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{4}[\\s-]?[0-9]{3}",
+        "name": "UnionPay Credit Card Number (19-digit)",
+        "description": "UnionPay credit card number (19 digits) with optional separators: 62xxxx-xxxx-xxxx-xxxx-xxx",
+        "specificity": 19,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "62[0-9]{15,16}",
+        "name": "UnionPay Credit Card Number (17/18-digit)",
+        "description": "UnionPay credit card number (17 or 18 digits) continuous format: 62xxxxxxxxxxxxxxx(x)",
+        "specificity": 17,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "0[0-9]{2}[\\s-]?[0-9]{4}[\\s-]?[0-9]{3}[\\s-]?0[0-9]",
+        "name": "Kohl's Credit Card Number",
+        "description": "Kohl's credit card number: 0xx-xxxx-xxx-0x with optional separators (space or dash)",
+        "specificity": 12,
+        "context_validation": "strict"
+    }
+]

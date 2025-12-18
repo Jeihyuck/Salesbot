@@ -1,0 +1,24 @@
+# Auto-generated intelligences.py file (DEV environment - static constants)
+# Generated on: 2025-05-27 17:29:11
+# Do not modify this file directly - it will be overwritten
+
+"""
+Intelligence constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import intelligences
+    print(intelligences.SOME_INTELLIGENCE)
+"""
+
+BUY_INFORMATION = 'Buy Information'
+ERROR_AND_FAILURE_RESPONSE = 'Error and Failure Response'
+GENERAL_INFORMATION = 'General Information'
+INSTALLATION_INQUIRY = 'Installation Inquiry'
+ORDERS_AND_DELIVERY = 'Orders and Delivery'
+PRODUCT_COMPARISON = 'Product Comparison'
+PRODUCT_DESCRIPTION = 'Product Description'
+PRODUCT_RECOMMENDATION = 'Product Recommendation'
+PURCHASE_POLICY = 'Purchase Policy'
+SERVICE_AND_REPAIR_GUIDE = 'Service and Repair Guide'
+STORE_INFORMATION = 'Store Information'
+USAGE_MANUAL = 'Usage Manual'
+# Hash: 12b441c2 (intelligences data fingerprint)

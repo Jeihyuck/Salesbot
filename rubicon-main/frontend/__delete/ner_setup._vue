@@ -1,0 +1,82 @@
+<template>
+  <v-col class="pa-0">
+    <codemirror
+      v-model="code"
+      placeholder="Code goes here..."
+      :style="{ height: '400px', borderRadius: '6px' }"
+      :autofocus="true"
+      :indent-with-tab="true"
+      :tab-size="2"
+      :extensions="extensions"
+      @ready="handleReady"
+    />
+  </v-col>
+</template>
+<!--
+@change="log('change', $event)"
+@focus="log('focus', $event)"
+@blur="log('blur', $event)" -->
+<script>
+  import { defineComponent } from 'vue'
+  import { Codemirror } from 'vue-codemirror'
+  import { json } from '@codemirror/lang-json'
+  // import { javascript } from '@codemirror/lang-javascript'
+  import { oneDark } from '@codemirror/theme-one-dark'
+  // import { githubLight, githubDark } from '@uiw/codemirror-theme-github';
+
+  export default defineComponent({
+    components: {
+      Codemirror
+    },
+    setup() {
+      const code = ref(`{
+  "graphParams": {
+    "topLeft": {
+      "title": "Rx 4단 누적 Delta T",
+      "margin": { "l": 20, "r": 50, "t": 20, "b": 30 },
+      "additionalLayout": {
+        "yaxis2": {
+          "showline": true,
+          "overlaying": "y",
+          "autorange": false,
+          "side": "right"
+        }
+      }
+    }
+  }
+}
+`)
+      // const extensions = [javascript(), oneDark]
+      const extensions = [json(), oneDark]
+      // const extensions = [javascript(), oneDark, EditorView.theme({
+      //   "&.cm-editor": {height: "100%", width: "100%"},
+      //   ".cm-scroller": {overflow: "auto"}
+      // })]
+
+      // Codemirror EditorView instance ref
+      const view = shallowRef()
+      const handleReady = (payload) => {
+        view.value = payload.view
+      }
+
+      // Status is available at all times via Codemirror EditorView
+      const getCodemirrorStates = () => {
+        const state = view.value.state
+        const ranges = state.selection.ranges
+        const selected = ranges.reduce((r, range) => r + range.to - range.from, 0)
+        const cursor = ranges[0].anchor
+        const length = state.doc.length
+        const lines = state.doc.lines
+        // more state info ...
+        // return ...
+      }
+
+      return {
+        code,
+        extensions,
+        handleReady,
+        log: console.log
+      }
+    }
+  })
+</script>

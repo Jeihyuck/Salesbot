@@ -1,0 +1,38 @@
+# Auto-generated channels.py file (DEV environment - static constants)
+# Generated on: 2025-06-18 17:40:40
+# Do not modify this file directly - it will be overwritten
+
+"""
+Channel constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import channels
+    print(channels.SOME_CHANNEL)
+"""
+
+AIBOT = 'AIBot'
+AIBOT2 = 'AIBot2'
+AITOOL = 'AITool'
+BIXBY = 'Bixby'
+CSBOT = 'CSBot'
+CUSTOM_TIMEOUT = 'Custom Timeout'
+DEV_DEBUG = 'DEV Debug'
+DEV_TEST = 'DEV Test'
+FAMILYNET = 'FamilyNet'
+GUARDRAIL_BYPASS = 'Guardrail Bypass'
+NO_LAYOUT = 'No Layout'
+STAR = 'STAR'
+STAR_DA = 'STAR_DA'
+STAR_VD = 'STAR_VD'
+SAMSUNGPLUS = 'SamsungPlus'
+SMARTTHINGS = 'SmartThings'
+SPRINKLR = 'Sprinklr'
+UT_BU = 'UT_BU'
+UT_CX = 'UT_CX'
+UT_DA = 'UT_DA'
+UT_ETC = 'UT_ETC'
+UT_EXT = 'UT_EXT'
+UT_FNET = 'UT_FNET'
+UT_MX = 'UT_MX'
+UT_ST = 'UT_ST'
+UT_VD = 'UT_VD'
+# Hash: 24c191f5 (channel data fingerprint)

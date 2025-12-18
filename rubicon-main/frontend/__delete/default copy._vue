@@ -1,0 +1,84 @@
+<template>
+  <v-col class="mx-3 mt-1">
+    <v-row class="pb-1">
+      <span class="font-weight-black pl-1" v-if="disabled" v-html="currentPageTitle"></span>
+    </v-row>
+    <v-row class="">
+      <router-view />
+    </v-row>
+  </v-col>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useMenuStore } from '@/stores/menu'
+
+// Access the current route
+const route = useRoute();
+
+// Access your menu store (if needed)
+const menuStore = useMenuStore();
+
+// Reactive variable for the title
+const title = ref([]);
+
+// Computed property for 'disabled'
+const disabled = computed(() => {
+  return route.meta.title !== false;
+});
+
+// Computed property for 'currentPageTitle'
+const currentPageTitle = computed(() => {
+
+  if (route.path === '/') {
+    title.value = false;
+  } else {
+    title.value = menuStore.menuPageTitle[route.path]
+  }
+
+  
+  // // Determine the title based on the route path
+  // switch (route.path) {
+  //   case '/':
+  //     title.value = false;
+  //     break;
+  //   case '/test':
+  //     title.value = ['Test', 'sample data table'];
+  //     break;
+  //   case '/chat':
+  //     title.value = ['Rubion Chat Test / Debug Page'];
+  //     break;
+  //   case '/trainingData/intelligenceTriage':
+  //     title.value = ['Training Data', 'Intelligence Triage'];
+  //     break;
+  //   case '/trainingData/ner':
+  //     title.value = ['Training Data', 'NER'];
+  //     break;
+  //   case '/trainingData/pseudoQuery':
+  //     title.value = ['Training Data', 'Pseudo Query'];
+  //     break;
+  //   case '/prompting/promptTemplate':
+  //     title.value = ['Prompting', 'Prompt Template'];
+  //     break;
+  //   default:
+  //     title.value = ['Page title has not set. Configure the file layouts/default.vue'];
+  //     break;
+  // }
+
+  // Function to format the title
+  const formatTitle = (item) => {
+    return item.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
+  // Build the HTML title
+  if (title.value) {
+    const htmlTitle = title.value
+      .map(formatTitle)
+      .join("<span class='text-primary-darken-1'>&nbsp;>&nbsp;</span>");
+    return `<h5 class='text-grey-lighten-2'>${htmlTitle}</h5>`;
+  } else {
+    return '';
+  }
+});
+</script>

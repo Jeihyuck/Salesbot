@@ -1,0 +1,12 @@
+[
+    {
+        "pattern": "\\+?[\\s-]?44[\\s-]?0?7[\\s-]?\\d{3}[\\s-]?\\d{6}",
+        "name": "UK Mobile Phone Number (Flexible)",
+        "description": "UK mobile phone number with optional country code, prefix, and separators: +44 07-123-456789, 07123456789, +44-7-123-456789, etc.",
+        "specificity": 18,
+        "whitelist": [
+            "03333441916"
+        ],
+        "context_validation": "strict"
+    }
+]

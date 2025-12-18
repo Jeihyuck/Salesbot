@@ -1,0 +1,9 @@
+[
+    {
+        "pattern": "GB\\d{2}[A-Z]{4}\\d{14}",
+        "name": "UK IBAN (International Bank Account Number)",
+        "description": "UK IBAN format: starts with 'GB', followed by 2 check digits, 4 letters (bank code), 6 digits (sort code), and 8 digits (account number)",
+        "specificity": 22,
+        "context_validation": "strict"
+    }
+]

@@ -1,0 +1,17 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+@use 'vuetify/settings' with (
+  $list-item-icon-margin-start: 12px,
+  $list-item-prepend-size: 19px,
+  $border-radius-root: 6px,
+  $tooltip-padding: 2px 10px,
+  $tooltip-text-color: rgb(var(--v-primary-base)),
+  $tooltip-background-color: rgb(6, 6, 6),
+  $table-column-padding: 0 6px
+);
+

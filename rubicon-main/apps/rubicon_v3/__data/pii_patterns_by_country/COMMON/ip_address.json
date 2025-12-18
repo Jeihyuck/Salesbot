@@ -1,0 +1,16 @@
+[
+    {
+        "pattern": "(?:25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)){3}",
+        "name": "IPv4 Address",
+        "description": "IPv4 address in dotted decimal notation",
+        "specificity": 15,
+        "context_validation": "strict"
+    },
+    {
+        "pattern": "(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}",
+        "name": "IPv6 Address",
+        "description": "IPv6 address in standard notation",
+        "specificity": 39,
+        "context_validation": "strict"
+    }
+]

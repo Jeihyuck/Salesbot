@@ -1,0 +1,13 @@
+[
+    {
+        "pattern": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+        "name": "Email Address",
+        "description": "Standard email address format. Expected length set to 254 as per RFC 5321.",
+        "specificity": 254,
+        "whitelist": [
+            "support@samsunguk.zendesk.com",
+            "uk.help@samsung.com",
+            "SA.noreply@samsung-mail.com"
+        ]
+    }
+]

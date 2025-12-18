@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  {% comment %} <link href="/{{ api_url_prefix }}static/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="/{{ api_url_prefix }}static/css/vuetify.min.css" rel="stylesheet"> {% endcomment %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  {% comment %} <script src="/{{ api_url_prefix }}static/js/vue.2.6.12.js"></script> {% endcomment %}
+
+  <title>Alpha - Test</title>
+</head>
+<body>
+  {{ api_url_prefix|json_script:"api-url-prefix" }}
+  {{ frontend_dev_url|json_script:"frontend-dev-url" }}
+  
+ <div> Kakao Message View </div> 
+</body>
+</html>

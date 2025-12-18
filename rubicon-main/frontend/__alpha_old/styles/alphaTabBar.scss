@@ -1,0 +1,30 @@
+@import 'alphaColors.scss';
+
+/* Style names */
+$tab-styles: ["default", "secondary", "tertiary"];
+
+/* Color */
+$tab-background-color: (
+  "default": #E4E6EF,
+  "secondary": #D4D7E4,
+  "tertiary": transparent
+) !default;
+
+/* Padding */
+$tab-padding: (
+  "default": 0 64px,
+  "secondary": 0 84px,
+  "tertiary": 0 24px
+) !default;
+
+$tab-font-color: (
+  "default": $primary1,
+  "secondary": $primary1,
+  "tertiary": black
+) !default;
+
+$tab-font-size: (
+  "default": 16px,
+  "secondary": 16px,
+  "tertiary": 22px
+) !default;

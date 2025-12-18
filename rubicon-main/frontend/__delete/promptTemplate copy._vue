@@ -1,0 +1,184 @@
+<template>
+    <splitpanes>
+      <pane size="60">
+        <alphaDataTable-view @onClickRow="onClickRow" ref="dataTableView" :alphaModel="alphaModel"></alphaDataTable-view>
+      </pane>
+      <pane>
+        <v-col align-self="end" v-if="alphaModel.filter.instanceSearch !== true" class="text-right pl-0 pr-1 pt-1 pb-2">
+          <v-btn
+            size="small"
+            variant="outlined"
+            color="primary"
+            height="32"
+            @click="updatePrompt"
+            >Update</v-btn>
+        </v-col>
+        <codemirror
+              v-model="code"
+              placeholder="Code goes here..."
+              :style="{ overflow: 'auto', borderRadius: '6px', borderRadius: '6px', border: '1px solid #444444'}"
+              :autofocus="true"
+              :lineWrapping="true"
+              :indent-with-tab="true"
+              :tab-size="2"
+              :extensions="extensions"
+              />
+      </pane>
+    </splitpanes>
+</template>
+
+<script setup>
+import { ref, reactive } from 'vue'
+import { Codemirror } from 'vue-codemirror'
+import { EditorView } from "@codemirror/view"
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
+import { markdown } from '@codemirror/lang-markdown'
+import { vscodeDark } from '@uiw/codemirror-theme-vscode'
+
+import { rubiconAdmin } from '@/_services'
+import alphaDataTableView from '@/components/alpha/alphaDataTableView.vue'
+
+
+
+
+const extensions = [markdown(), vscodeDark, EditorView.lineWrapping]
+
+const alphaModel = reactive({
+  tableUniqueID: 'promptTemplate',
+  itemName: 'Prompt Template',
+  paging: { page: 1, itemsPerPage: 15 },
+  function: rubiconAdmin.promptTemplate.table,
+  crud: [true, true, true, true],
+  headerId: '39145c6d-ed17-48e2-a134-e9cafc4c813f',
+  filter: {
+    hideBoarder: false,
+    language: {
+      label: 'Language',
+      type: 'dropdown',
+      clearable: true,
+      multiple: true,
+      selector: ['EN', 'KO'],
+      selected: null,
+      col: 2
+    },
+    module: {
+      label: 'Module',
+      type: 'dropdown',
+      clearable: true,
+      multiple: true,
+      selector: [
+        { title: 'Augmentation', value: 'AUG' },
+        { title: 'Re-Write', value: 'REW' },
+        { title: 'Intelligence Triage', value: 'INT' },
+        { title: 'NER', value: 'NER' },
+        { title: 'Pseudo Query', value: 'PSQ' },
+        { title: 'Final Response', value: 'FRS' },
+        { title: 'N/A', value: 'N/A' },
+      ],
+      selected: null,
+      col: 3
+    },
+    intelligence: {
+      label: 'Intelligence',
+      type: 'dropdown',
+      clearable: true,
+      multiple: true,
+      selector: ['PD', 'EX', 'CS', 'CP', 'ST', 'SA'],
+      selected: null,
+      col: 3
+    },
+    active: {
+      label: 'Active',
+      type: 'dropdown',
+      clearable: true,
+      multiple: true,
+      selector: [
+        { title: 'T', value: true },
+        { title: 'F', value: false }
+      ],
+      selected: null,
+      col: 2
+    },
+  },
+  dialogWidth: '600px',
+  dialog: {
+    language: {
+      label: 'Language',
+      type: 'dropdown',
+      multiple: false,
+      required: true,
+      selector: ['EN', 'KO'],
+      selected: ''
+    },
+    module: {
+      label: 'Module',
+      type: 'dropdown',
+      multiple: false,
+      required: true,
+      selector: [
+        { title: 'Augmentation', value: 'AUG' },
+        { title: 'Re-Write', value: 'REW' },
+        { title: 'Intelligence Triage', value: 'INT' },
+        { title: 'NER', value: 'NER' },
+        { title: 'Pseudo Query', value: 'PSQ' },
+        { title: 'Final Response', value: 'FRS' },
+        { title: 'N/A', value: 'N/A' },
+      ],
+      selected: ''
+    },
+    intelligence: {
+      label: 'Intelligence',
+      type: 'dropdown',
+      multiple: false,
+      required: true,
+      selector: [
+        { title: 'N/A', value: 'N/A' },
+      ],
+      selected: ''
+    },
+    prompt_template_id: {
+      label: 'Prompt Template ID',
+      type: 'text',
+      required: true,
+      selected: ''
+    },
+    prompt_template_description: {
+      label: 'Prompt Template Desc.',
+      type: 'text',
+      required: false,
+      selected: ''
+    },
+    active: {
+      label: 'Active',
+      type: 'dropdown',
+      selector: [
+        { title: 'T', value: true },
+        { title: 'F', value: false },
+      ],
+      selected: true
+    },
+    prompt_template: {
+      type: 'code',
+      language: 'markdown',
+      selected: ''
+    },
+  }
+})
+
+// State management
+const code = ref(``)
+const selectedRow = ref(null)
+const onClickRow = (row) => {
+  // console.log(row.item.prompt_template)
+  code.value = row.item.prompt_template
+  selectedRow.value = row.item.id
+}
+const dataTableView = ref(null)
+const updatePrompt = () => {
+  rubiconAdmin.promptTemplate.table('updatePromptTemplate', { id: selectedRow.value, prompt_template: code.value }).then((response) => {
+    console.log(response)
+    dataTableView.value.dataTable.requestTableData()
+  })
+}  
+</script>

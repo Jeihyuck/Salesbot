@@ -1,0 +1,9 @@
+[
+    {
+        "pattern": "(?:[A-Fa-f0-9]{2}[\\s:-]?){5}[A-Fa-f0-9]{2}",
+        "name": "MAC Address (Flexible)",
+        "description": "MAC address with optional separators (colon, dash, space, or none) between groups. Matches both separated and continuous formats.",
+        "specificity": 17,
+        "context_validation": "strict"
+    }
+]

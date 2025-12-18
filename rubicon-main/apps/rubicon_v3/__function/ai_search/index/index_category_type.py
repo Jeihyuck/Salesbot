@@ -1,0 +1,7 @@
+import enum
+
+
+class IndexCategoryType(enum.Enum):
+    PRODUCT_CATEGORY = "PRODUCT_CATEGORY"
+    SCRP_KR_CATEGORY = "SCRP_KR_CATEGORY"
+    SCRP_UK_CATEGORY = "SCRP_UK_CATEGORY"

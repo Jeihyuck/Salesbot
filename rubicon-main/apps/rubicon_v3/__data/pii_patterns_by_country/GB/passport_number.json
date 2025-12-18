@@ -1,0 +1,9 @@
+[
+    {
+        "pattern": "[A-Za-z0-9]\\d{8}",
+        "name": "UK Passport Number (1 letter or digit + 8 digits)",
+        "description": "UK passport number: first character is a letter or digit, followed by 8 digits",
+        "specificity": 9,
+        "context_validation": "strict"
+    }
+]

@@ -1,0 +1,32 @@
+# Auto-generated ner_fields.py file (DEV environment - static constants)
+# Generated on: 2025-04-30 17:09:46
+# Do not modify this file directly - it will be overwritten
+
+"""
+NER field constants loaded from the database.
+Usage:
+    from apps.rubicon_v3.__function.definitions import ner_fields
+    print(ner_fields.SOME_FIELD)
+"""
+
+DATE = 'date'
+ERROR_FAILURE = 'error_failure'
+EXTEND_REQUEST = 'extend_request'
+INSTALLATION = 'installation'
+INTEREST_PERIOD = 'interest_period'
+LOCATION = 'location'
+PAYMENT_CARD = 'payment_card'
+PRODUCT_CODE = 'product_code'
+PRODUCT_COLOR = 'product_color'
+PRODUCT_MODEL = 'product_model'
+PRODUCT_OPTION = 'product_option'
+PRODUCT_PRICE = 'product_price'
+PRODUCT_RECOMMEND = 'product_recommend'
+PRODUCT_SPEC = 'product_spec'
+PRODUCT_SUPPORT = 'product_support'
+PROMOTION_NAME = 'promotion_name'
+SERVICE_CENTER = 'service_center'
+SPLIT_PAY = 'split_pay'
+STORE = 'store'
+VOUCHER_REWARDS = 'voucher_rewards'
+# Hash: 72d15acb (NER field data fingerprint)
