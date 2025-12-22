@@ -31,8 +31,17 @@ cleanup() {
 trap cleanup EXIT
 
 cd "${ROOT_DIR}"
-DJANGO_SETTINGS_MODULE=alpha.settings python -m django runserver 0.0.0.0:8000 &
-BACKEND_PID=$!
+if python -m django --version >/dev/null 2>&1; then
+  DJANGO_SETTINGS_MODULE=alpha.settings python -m django runserver 0.0.0.0:8000 &
+  BACKEND_PID=$!
+else
+  cat <<'EOF'
+Warning: Django is not installed. Skipping backend startup.
+Install it with your backend dependencies, for example:
+  pip install -r requirements.txt
+Then re-run this script.
+EOF
+fi
 
 cd "${ROOT_DIR}/frontend"
 yarn install

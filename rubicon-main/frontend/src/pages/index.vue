@@ -66,10 +66,11 @@
             v-model="password"
             prepend-inner-icon="mdi-lock-check-outline"
           ></v-text-field>
-          <v-col class="px-6 pb-0 mb-0 d-flex justify-center">
+          <v-col v-if="!isDev" class="px-6 pb-0 mb-0 d-flex justify-center">
             <v-btn height="40px" block @click="getMFACode"><div style="color: #1976D2;">Get MFA Verification CODE</div></v-btn>
-          </v-col class="d-flex justify-center">
+          </v-col>
           <v-otp-input
+            v-if="!isDev"
             class="px-0 mx-0"
             v-model="mfaCode"
             variant="solo"
@@ -108,6 +109,7 @@ const envStore = useEnvStore()
 
 const project_name = import.meta.env.VITE_PROJECT_NAME
 const encryptionKey = CryptoJS.enc.Utf8.parse(import.meta.env.VITE_ENCRYPTION_KEY)
+const isDev = import.meta.env.VITE_OP_TYPE === 'DEV'
 const username = ref('')
 const password = ref('')
 const encryptedPassword = ref('')
@@ -165,13 +167,16 @@ const loginSubmit = async () => {
   console.log('Salted Password:', saltedPassword)
   encryptedPassword.value = await encrypt(saltedPassword, encryptionKey)
   console.log(encryptedPassword.value)
-  if (mfaCode.value.length < 6) {
+  if (!isDev && mfaCode.value.length < 6) {
     proxy.$snackbar.showSnackbar({
       title: 'Comment',
       message: 'Please enter a valid MFA code.',
       color: 'warning'
     })
   } else {
+    if (isDev) {
+      mfaCode.value = '000000'
+    }
     await authStore.login(username.value, encryptedPassword.value, mfaCode.value, '-')
 
     if (authStore.isAuthenticated) {
