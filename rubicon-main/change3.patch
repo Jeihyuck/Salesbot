@@ -173,6 +173,66 @@ index 8510abe2751029c984f73f6632ee7d518494ec03..99c850e3e38e1794a0a3ebbd2e7e7647
    padding-left: 6px;
  }
  #app > div > div > div > form > div > div > div.v-input__slot > div.v-input__prepend-inner > div > .v-icon {
+diff --git a/rubicon-main/frontend/src/router/index.js b/rubicon-main/frontend/src/router/index.js
+index 2681b068cc67dcfeea41bc9ad4ad899838fb3167..fe027068784ffecee72d585c8f3d36d1f218c4d8 100644
+--- a/rubicon-main/frontend/src/router/index.js
++++ b/rubicon-main/frontend/src/router/index.js
+@@ -42,50 +42,55 @@ const router = createRouter({
+ // Workaround for https://github.com/vitejs/vite/issues/11804
+ router.onError((err, to) => {
+   if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
+     if (!localStorage.getItem('vuetify:dynamic-reload')) {
+       // console.log('Reloading page to fix dynamic import error')
+       localStorage.setItem('vuetify:dynamic-reload', 'true')
+       location.assign(to.fullPath)
+     } else {
+       console.error('Dynamic import error, reloading page did not fix it', err)
+     }
+   } else {
+     console.error(err)
+   }
+ })
+ 
+ router.isReady().then(() => {
+   localStorage.removeItem('vuetify:dynamic-reload')
+ })
+ 
+ 
+ 
+ 
+ router.beforeEach((to, from, next) => {
+   // next()
+ 
++  if (import.meta.env.VITE_OP_TYPE === 'DEV' && to.path === '/') {
++    next('/chat')
++    return
++  }
++
+   const authStore = useAuthStore()
+   const menuStore = useMenuStore()
+   let menuList = []
+ 
+   let hasPermission = false
+   menuList = JSON.parse(JSON.stringify(menuStore.menuList))
+   for (let i = 0; i < menuList.length; i++) {
+     if (menuList[i].url === to.path) {
+       hasPermission = true
+     }
+   }
+ 
+   if (to.path === '/') {
+     hasPermission = true
+   }
+ 
+   // if (to.path === '/data/webCache') {
+   //   hasPermission = true
+   // }
+ 
+   if (to.path === '/chat') {
+     hasPermission = true
+   }
+ 
+   if (to.path === '/searchSummary') {
 diff --git a/rubicon-main/run_all.sh b/rubicon-main/run_all.sh
 new file mode 100755
 index 0000000000000000000000000000000000000000..1b71cacc6705d8dbcbe3073f6b37f2d41ed9c406
@@ -230,3 +290,4 @@ index 0000000000000000000000000000000000000000..1b71cacc6705d8dbcbe3073f6b37f2d4
 +FRONTEND_PID=$!
 +
 +wait
+ㅈ;

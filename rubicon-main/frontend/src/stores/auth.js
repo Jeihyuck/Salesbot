@@ -5,10 +5,11 @@ import { alphaAuth, authService } from '@/_services'
 export const useAuthStore = defineStore('auth', {
     state: () => ({
       router: useRouter(),
-      isAuthenticated: false,
-      username: null,
-      department: null,
-      group: null,
+      // Bypass auth in development when VITE_OP_TYPE=DEV or VITE_BYPASS_AUTH=true
+      isAuthenticated: (import.meta.env.VITE_BYPASS_AUTH === 'true' || import.meta.env.VITE_OP_TYPE === 'DEV') ? true : false,
+      username: (import.meta.env.VITE_BYPASS_AUTH === 'true' || import.meta.env.VITE_OP_TYPE === 'DEV') ? (import.meta.env.VITE_BYPASS_USERNAME || 'debug') : null,
+      department: (import.meta.env.VITE_BYPASS_AUTH === 'true' || import.meta.env.VITE_OP_TYPE === 'DEV') ? (import.meta.env.VITE_BYPASS_DEPARTMENT || 'dev') : null,
+      group: (import.meta.env.VITE_BYPASS_AUTH === 'true' || import.meta.env.VITE_OP_TYPE === 'DEV') ? (import.meta.env.VITE_BYPASS_GROUP ? JSON.parse(import.meta.env.VITE_BYPASS_GROUP) : null) : null,
       refreshToken: null,
       accessToken: null,
       accessTokenIssueTime: null

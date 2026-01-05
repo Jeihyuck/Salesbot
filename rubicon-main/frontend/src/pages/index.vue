@@ -94,8 +94,8 @@
 
 <script setup>
 
-import { ref, watch, getCurrentInstance } from 'vue'
-import { useRoute } from 'vue-router' 
+import { ref, watch, getCurrentInstance, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router' 
 import { useAuthStore } from '@/stores/auth'
 import { useMenuStore } from '@/stores/menu'
 import { useEnvStore } from '@/stores/env'
@@ -105,6 +105,7 @@ import { proxyRefs } from 'vue'
 import CryptoJS from 'crypto-js'
 
 const route = useRoute();
+const router = useRouter()
 const envStore = useEnvStore()
 
 const project_name = import.meta.env.VITE_PROJECT_NAME
@@ -118,6 +119,21 @@ const loginSuccess = ref(false)
 const loginFail = ref(false)
 
 const authStore = useAuthStore()
+
+// If already authenticated (e.g., dev bypass), go straight to /chat
+onMounted(async () => {
+  if (authStore.isAuthenticated) {
+    await menuStore.getMenuList()
+    router.push('/chat')
+  }
+})
+
+watch(() => authStore.isAuthenticated, async (val) => {
+  if (val) {
+    await menuStore.getMenuList()
+    router.push('/chat')
+  }
+}, { immediate: true })
 
 watch(loginSuccess, () => {
 loginFail.value = loginSuccess.value === 'false'
@@ -180,9 +196,15 @@ const loginSubmit = async () => {
     await authStore.login(username.value, encryptedPassword.value, mfaCode.value, '-')
 
     if (authStore.isAuthenticated) {
-      menuStore.getMenuList()
+      await menuStore.getMenuList()
+      await router.push('/chat')
     } else {
-      await router.push('/chat') //
+      proxy.$snackbar.showSnackbar({
+        title: 'Incorrect Login',
+        message: 'Login information is not correct, check your ID and Password',
+        color: 'error',
+        timeout: 3000,
+      })
     }
   }
 }
